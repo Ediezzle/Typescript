@@ -68,3 +68,49 @@ var mercObj = new Mercedes("Mercedes-Benz GLA");
 var hondaObj = new Honda("Honda City");
 console.log(mercObj.run()); // A Mercedes started A Mercedes-Benz GLA is moving at 150 mph!
 console.log(hondaObj.run()); // A Honda started A Honda City is moving at 100 mph!
+var Person = /** @class */ (function () {
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.show = function () {
+        console.log(this.name);
+    };
+    return Person;
+}());
+var Manager = /** @class */ (function (_super) {
+    __extends(Manager, _super);
+    function Manager(name, code) {
+        var _this = _super.call(this, name) || this;
+        _this.empCode = code;
+        return _this;
+    }
+    Manager.prototype.find = function (name) {
+        // execute AJAX request to find an employee from a db
+        return new Manager(name, 1);
+    };
+    return Manager;
+}(Person));
+var emp1 = new Manager("James", 100);
+emp1.show(); //James
+var emp2 = emp1.find('Steve');
+console.log(emp2);
+var Human = /** @class */ (function () {
+    function Human() {
+    }
+    Human.prototype.display = function () {
+        console.log(this.name);
+    };
+    return Human;
+}());
+var Secretary = /** @class */ (function (_super) {
+    __extends(Secretary, _super);
+    function Secretary(name, code) {
+        var _this = _super.call(this) || this;
+        _this.empCode = code;
+        _this.name = name;
+        return _this;
+    }
+    return Secretary;
+}(Human));
+var employee = new Secretary("James", 100);
+employee.display(); //James

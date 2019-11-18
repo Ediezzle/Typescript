@@ -70,3 +70,60 @@ let hondaObj = new Honda("Honda City")
 
 console.log(mercObj.run());  // A Mercedes started A Mercedes-Benz GLA is moving at 150 mph!
 console.log(hondaObj.run()); // A Honda started A Honda City is moving at 100 mph!
+
+abstract class Person {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    show(): void {
+        console.log(this.name);
+    }
+
+    abstract find(name: string): Person;
+}
+
+class Manager extends Person {
+    empCode: number;
+
+    constructor(name: string, code: number) {
+        super(name); // must call super()
+        this.empCode = code;
+    }
+
+    find(name: string): Person {
+        // execute AJAX request to find an employee from a db
+        return new Manager(name, 1);
+    }
+}
+
+let emp1: Person = new Manager("James", 100);
+emp1.show(); //James
+
+let emp2: Person = emp1.find('Steve');
+console.log(emp2);
+
+abstract class Human {
+    abstract name: string;
+
+    display(): void {
+        console.log(this.name);
+    }
+}
+
+class Secretary extends Human {
+    name: string;
+    empCode: number;
+
+    constructor(name: string, code: number) {
+        super(); // must call super()
+
+        this.empCode = code;
+        this.name = name;
+    }
+}
+
+let employee: Human = new Secretary("James", 100);
+employee.display(); //James
